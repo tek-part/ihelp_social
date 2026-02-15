@@ -164,9 +164,11 @@ export const Hero = () => {
           </div>
         </motion.div>
 
-        <div className="relative z-20 flex min-h-screen flex-col items-center justify-start gap-8 pt-32 pb-10 lg:hidden">
+        <div className="relative z-20 flex min-h-screen flex-col items-center justify-start gap-0 pt-32 pb-10 lg:hidden">
           <HeroCenterLogo mobile />
-          <HeroLeftContent locale={locale} isArabic={isArabic} mobile />
+          <div className="-mt-16">
+            <HeroLeftContent locale={locale} isArabic={isArabic} mobile />
+          </div>
         </div>
       </Container>
     </motion.section>

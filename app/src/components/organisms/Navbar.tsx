@@ -38,8 +38,8 @@ export const Navbar: FC<NavbarProps> = ({ overlay = false }) => {
             )}
           >
             <Link to="/" className="flex items-center gap-3" onClick={closeMenu}>
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-700/20">
-                <img src="/logo.svg" alt="" className="h-6 w-6 object-contain" loading="lazy" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#291210]">
+                <img src="/logo.svg" alt="" className="h-9 w-9 object-contain" loading="lazy" />
               </div>
               <div className="hidden leading-tight sm:block">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.35em] text-primary-800">
@@ -72,14 +72,7 @@ export const Navbar: FC<NavbarProps> = ({ overlay = false }) => {
               ))}
             </nav>
 
-            <div className="flex items-center gap-2">
-              <button
-                className="hidden h-10 w-10 items-center justify-center rounded-full border border-primary-700/25 text-[11px] font-semibold uppercase tracking-[0.3em] text-primary-700 transition hover:border-primary-700/45 hover:text-primary-800 sm:inline-flex"
-                onClick={toggleLocale}
-                aria-label={isArabic ? 'تغيير اللغة' : 'Toggle language'}
-              >
-                {t(locale, 'language')}
-              </button>
+            <div className="ms-auto flex items-center gap-2">
               <Link
                 to="/contact"
                 className="hidden rounded-full bg-primary-600 px-5 py-2 text-xs font-semibold text-white shadow-[0_10px_20px_-12px_rgba(0,0,0,0.35)] transition hover:bg-primary-700 sm:inline-flex"
@@ -87,7 +80,14 @@ export const Navbar: FC<NavbarProps> = ({ overlay = false }) => {
                 {ctaLabel}
               </Link>
               <button
-                className="relative flex h-10 w-10 items-center justify-center rounded-full border border-primary-700/25 text-primary-700 transition hover:border-primary-700/45 hover:text-primary-800 md:hidden"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary-700/25 text-[10px] font-semibold uppercase tracking-[0.25em] text-primary-700 transition hover:border-primary-700/45 hover:text-primary-800 sm:text-[11px] sm:tracking-[0.3em]"
+                onClick={toggleLocale}
+                aria-label={isArabic ? 'تغيير اللغة' : 'Toggle language'}
+              >
+                {t(locale, 'language')}
+              </button>
+              <button
+                className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary-700/25 text-primary-700 transition hover:border-primary-700/45 hover:text-primary-800 md:hidden"
                 onClick={() => setOpen((p) => !p)}
                 aria-label={isArabic ? 'فتح القائمة' : 'Toggle menu'}
               >
