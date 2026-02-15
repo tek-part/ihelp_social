@@ -110,8 +110,8 @@ const HeroLeftContent = ({ locale, isArabic, mobile = false, className }: HeroLe
           rel="noreferrer"
           className={
             mobile
-              ? 'h-11 w-full bg-primary-500 px-6 text-base text-primary-900 shadow-[0_12px_28px_-14px_rgba(0,0,0,0.75)] hover:bg-primary-400'
-              : 'h-11 bg-primary-500 px-6 text-base text-primary-900 shadow-[0_12px_28px_-14px_rgba(0,0,0,0.75)] hover:bg-primary-400'
+              ? 'h-11 w-full border border-[#f5e9dc] bg-[#f5e9dc] px-6 text-base font-semibold text-[#4a3025] shadow-[0_12px_28px_-14px_rgba(0,0,0,0.75)] hover:bg-[#ecdece]'
+              : 'h-11 border border-[#f5e9dc] bg-[#f5e9dc] px-6 text-base font-semibold text-[#4a3025] shadow-[0_12px_28px_-14px_rgba(0,0,0,0.75)] hover:bg-[#ecdece]'
           }
         >
           {t(locale, 'book_call')}
@@ -123,8 +123,8 @@ const HeroLeftContent = ({ locale, isArabic, mobile = false, className }: HeroLe
           variant="ghost"
           className={
             mobile
-              ? 'h-11 w-full border border-primary-100/35 bg-black/20 px-6 text-base text-primary-50 hover:border-primary-100/65 hover:bg-black/35'
-              : 'h-11 border border-primary-100/35 bg-black/20 px-6 text-base text-primary-50 hover:border-primary-100/65 hover:bg-black/35'
+              ? 'h-11 w-full border border-[#f5e9dc]/80 bg-transparent px-6 text-base font-medium text-[#f5e9dc] hover:bg-[#f5e9dc]/12'
+              : 'h-11 border border-[#f5e9dc]/80 bg-transparent px-6 text-base font-medium text-[#f5e9dc] hover:bg-[#f5e9dc]/12'
           }
         >
           {t(locale, 'view_services')}
