@@ -1,0 +1,33 @@
+:root {
+  color-scheme: light;
+  /* Burgundy background + beige primary swap */
+  --color-primary-50: 255 252 248;
+  --color-primary-100: 253 248 241;
+  --color-primary-200: 250 241 231;
+  --color-primary-300: 247 237 225;
+  --color-primary-400: 246 235 223;
+  --color-primary-500: 245 233 220; /* #f5e9dc */
+  --color-primary-600: 122 87 64;
+  --color-primary-700: 95 66 48;
+  --color-primary-800: 65 44 32;
+  --color-primary-900: 42 20 21;
+
+  --color-secondary-500: 121 55 58;
+
+  --color-accent-100: 183 112 116;
+  --color-accent-400: 141 73 76;
+  --color-accent-500: 93 44 46;
+  --color-accent-600: 59 28 30;
+
+  --color-surface: 28 14 15;
+  --color-surface-elevated: 42 20 21;
+  --color-muted: 191 164 147;
+  --color-border: 78 43 45;
+  --color-heading: 245 233 220;
+  --color-body: 221 199 181;
+  --gradient-hero: linear-gradient(135deg, rgba(245,233,220,0.16) 0%, rgba(183,112,116,0.14) 45%, rgba(28,14,15,1) 100%);
+}
+
+.dark {
+  color-scheme: light;
+}
