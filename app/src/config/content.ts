@@ -13,8 +13,8 @@ export const siteIdentity = {
 }
 
 export const contact = {
-  phone: '0536011619',
-  whatsapp: '0536011619',
+  phone: '966536011619',
+  whatsapp: '966536011619',
   email: 'ihelp.sociall@gmail.com',
   instagram: 'ihelp.social',
   tiktok: 'ihelp.social',

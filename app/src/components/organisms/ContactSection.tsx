@@ -37,7 +37,7 @@ export const ContactSection = () => {
               className="inline-flex items-center gap-2 transition hover:text-primary-600"
             >
               <Phone className="h-4 w-4" />
-              {contact.phone}
+              0536011619
             </a>
             <a
               href={`mailto:${contact.email}`}
@@ -53,7 +53,7 @@ export const ContactSection = () => {
               rel="noreferrer"
             >
               <MessageCircle className="h-4 w-4" />
-              WhatsApp
+              {contact.whatsapp}
             </a>
           </div>
         </motion.div>

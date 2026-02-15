@@ -1,5 +1,6 @@
-﻿import { Link } from 'react-router-dom'
-import { Instagram, Mail, MessageCircle, Phone } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Instagram, Mail, Phone } from 'lucide-react'
+import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon'
 import { navLinks } from '@/config/navigation'
 import { heroCtaLinks, site } from '@/config/constants'
 import { useLocale } from '@/context/LocaleContext'
@@ -19,7 +20,7 @@ export const Footer = () => {
     {
       label: 'WhatsApp',
       href: heroCtaLinks.whatsapp,
-      icon: MessageCircle,
+      icon: WhatsAppIcon,
     },
     {
       label: 'Call',

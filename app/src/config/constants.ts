@@ -2,8 +2,8 @@ export const site = {
   name: 'iHelp Social',
   domain: 'https://ihelp.social',
   email: 'ihelp.sociall@gmail.com',
-  phone: '0536011619',
-  whatsapp: '0536011619',
+  phone: '966536011619',
+  whatsapp: '966536011619',
   instagram: 'ihelp.social',
   tiktok: 'ihelp.social',
 }
