@@ -150,9 +150,16 @@ export const Footer = () => {
               ))}
             </div>
             <div className="mt-4">
-              {locale === 'ar'
-                ? '© 2026 جميع الحقوق محفوظة لـ iHelp Social'
-                : '© 2026 All rights reserved iHelp Social'}
+              {locale === 'ar' ? '© 2026 جميع الحقوق محفوظة ' : '© 2026 All rights reserved '}
+              <a
+                href="https://tarawud.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-400 transition hover:text-blue-300"
+              >
+                Tarawud
+              </a>
+              {' Company.'}
             </div>
           </div>
         </div>
