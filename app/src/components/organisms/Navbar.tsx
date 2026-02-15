@@ -9,8 +9,13 @@ import { clsx } from 'clsx'
 import { MobileMenu } from './MobileMenu'
 import { useScrollPosition } from '@/hooks/useScrollPosition'
 import { motion, AnimatePresence } from 'framer-motion'
+import type { FC } from 'react'
 
-export const Navbar = () => {
+type NavbarProps = {
+  overlay?: boolean
+}
+
+export const Navbar: FC<NavbarProps> = ({ overlay = false }) => {
   const [open, setOpen] = useState(false)
   const { locale, toggleLocale } = useLocale()
   const scrolled = useScrollPosition(16)
@@ -22,7 +27,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-40">
+      <header className={overlay ? 'fixed inset-x-0 top-0 z-50' : 'fixed inset-x-0 top-0 z-40'}>
         <div className="mx-auto flex max-w-[1200px] px-4 py-4 sm:px-6 lg:px-8">
           <div
             className={clsx(

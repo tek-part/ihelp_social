@@ -1,111 +1,174 @@
-﻿import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { clsx } from 'clsx'
 import { Container } from '../atoms/Container'
 import { Button } from '../atoms/Button'
-import { Badge } from '../atoms/Badge'
 import { t } from '@/utils/i18n'
 import { useLocale } from '@/context/LocaleContext'
+import type { Locale } from '@/context/LocaleContext'
 import { heroCtaLinks } from '@/config/constants'
-import { motion } from 'framer-motion'
+
+const HeroBackground = () => (
+  <>
+    <motion.div
+      aria-hidden="true"
+      className="absolute inset-0 bg-[url('/backgrounds/site-bg.png')] bg-cover bg-center bg-no-repeat"
+      initial={{ opacity: 0, scale: 1.03 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 1.02 }}
+      transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+    />
+    <motion.div
+      aria-hidden="true"
+      className="absolute inset-0 bg-[radial-gradient(circle_at_66%_46%,rgba(245,233,220,0.07),transparent_36%),linear-gradient(180deg,rgba(22,8,9,0.42)_0%,rgba(22,8,9,0.74)_56%,rgba(22,8,9,0.9)_100%)]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.75, ease: 'easeOut' }}
+    />
+  </>
+)
+
+const HeroCenterLogo = ({ mobile = false }: { mobile?: boolean }) => (
+  <motion.div
+    aria-hidden="true"
+    className={
+      mobile
+        ? 'relative z-30 w-full max-w-[460px] text-center sm:max-w-[520px]'
+        : 'pointer-events-none relative z-30 w-[min(56vw,880px)] text-center'
+    }
+    initial={mobile ? { opacity: 0, y: 14, scale: 0.98 } : { opacity: 0, scale: 0.95 }}
+    animate={mobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, scale: 1 }}
+    exit={mobile ? { opacity: 0, y: -10, scale: 0.98 } : { opacity: 0, scale: 0.97 }}
+    transition={{ duration: 0.82, ease: [0.2, 0.8, 0.2, 1] }}
+  >
+    <motion.div
+      className="w-full overflow-hidden"
+      animate={{ y: [0, -4, 0] }}
+      transition={{ duration: 7.5, ease: 'easeInOut', repeat: Infinity }}
+    >
+      <img
+        src="/ihelp-logo-main.svg"
+        alt="iHelp Social"
+        className={
+          mobile
+            ? 'h-auto w-full object-contain -translate-y-[28%] opacity-95 drop-shadow-[0_20px_50px_rgba(0,0,0,0.45)]'
+            : 'h-auto max-h-[72vh] w-full object-contain opacity-95 drop-shadow-[0_24px_60px_rgba(0,0,0,0.45)]'
+        }
+        loading="eager"
+      />
+    </motion.div>
+  </motion.div>
+)
+
+type HeroLeftContentProps = {
+  locale: Locale
+  isArabic: boolean
+  mobile?: boolean
+  className?: string
+}
+
+const HeroLeftContent = ({ locale, isArabic, mobile = false, className }: HeroLeftContentProps) => {
+  const wrapperClass = mobile
+    ? 'relative z-40 mx-auto max-w-[420px] space-y-5 text-center'
+    : clsx('relative z-40 max-w-[460px] space-y-6 text-left', className)
+
+  const actionsClass = mobile
+    ? 'flex flex-col gap-3'
+    : 'flex items-center gap-4 justify-start'
+
+  return (
+    <motion.div
+      className={wrapperClass}
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -14 }}
+      transition={{ duration: 0.72, ease: [0.4, 0, 0.2, 1], delay: 0.12 }}
+    >
+      <h1 className={mobile ? 'text-[clamp(36px,9vw,56px)] font-display font-medium leading-[0.92] text-primary-50' : 'text-[clamp(36px,3.8vw,62px)] font-display font-medium leading-[0.92] tracking-[-0.02em] text-primary-50'}>
+        {isArabic ? (
+          t(locale, 'hero_title')
+        ) : (
+          <>
+            Social media that
+            <br />
+            works like a
+            <span className="block italic text-primary-300">growth engine.</span>
+          </>
+        )}
+      </h1>
+
+      <p className={mobile ? 'text-base leading-relaxed text-primary-100/85' : 'text-[clamp(16px,1.15vw,19px)] leading-relaxed text-primary-100/85'}>
+        {t(locale, 'hero_subtitle')}
+      </p>
+
+      <div className={actionsClass}>
+        <Button
+          as="a"
+          href={heroCtaLinks.whatsapp}
+          target="_blank"
+          rel="noreferrer"
+          className={
+            mobile
+              ? 'h-11 w-full bg-primary-500 px-6 text-base text-primary-900 shadow-[0_12px_28px_-14px_rgba(0,0,0,0.75)] hover:bg-primary-400'
+              : 'h-11 bg-primary-500 px-6 text-base text-primary-900 shadow-[0_12px_28px_-14px_rgba(0,0,0,0.75)] hover:bg-primary-400'
+          }
+        >
+          {t(locale, 'book_call')}
+          <ArrowRight className="h-4 w-4" />
+        </Button>
+        <Button
+          as="a"
+          href="/services"
+          variant="ghost"
+          className={
+            mobile
+              ? 'h-11 w-full border border-primary-100/35 bg-black/20 px-6 text-base text-primary-50 hover:border-primary-100/65 hover:bg-black/35'
+              : 'h-11 border border-primary-100/35 bg-black/20 px-6 text-base text-primary-50 hover:border-primary-100/65 hover:bg-black/35'
+          }
+        >
+          {t(locale, 'view_services')}
+        </Button>
+      </div>
+    </motion.div>
+  )
+}
 
 export const Hero = () => {
   const { locale } = useLocale()
   const isArabic = locale === 'ar'
 
   return (
-    <section className="section-shell relative overflow-hidden bg-surface/85 backdrop-blur-sm [--section-fade:rgba(28,14,15,0.85)]">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-br from-primary-50/70 via-transparent to-secondary-500/10"
-      />
-      <div aria-hidden="true" className="absolute inset-0 opacity-60">
-        <div className="absolute -left-10 top-10 h-40 w-40 rounded-full bg-primary-100" />
-        <div className="absolute right-10 top-24 h-32 w-32 rounded-full bg-secondary-500/25" />
-        <div className="absolute left-1/3 top-1/2 h-56 w-56 -translate-y-1/2 rotate-6 rounded-[32px] bg-primary-200/40" />
-        <div className="absolute right-1/3 bottom-10 h-44 w-44 rotate-[-8deg] rounded-[36px] bg-primary-50" />
-      </div>
+    <motion.section
+      className="section-shell relative min-h-screen overflow-hidden [--section-fade:rgba(28,14,15,0.95)]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
+    >
+      <HeroBackground />
 
-      <Container className="relative z-10 grid min-h-[80vh] items-center gap-16 py-16 md:py-24 lg:grid-cols-2">
-        <div className="space-y-7">
-          <Badge tone="neutral" className="bg-surface-elevated text-primary-700">
-            {t(locale, 'stats_title')}
-          </Badge>
-
-          <motion.h1
-            className="text-4xl font-display font-semibold leading-tight text-heading sm:text-5xl lg:text-6xl"
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1] }}
-          >
-            {isArabic ? (
-              <>
-                السوشيال ميديا <span className="text-primary-600">تعمل كآلة نمو</span>
-              </>
-            ) : (
-              <>
-                Social media that works like a{' '}
-                <span className="italic text-primary-600">growth engine</span>.
-              </>
-            )}
-          </motion.h1>
-
-          <motion.p
-            className="max-w-xl text-lg text-muted"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
-          >
-            {t(locale, 'hero_subtitle')}
-          </motion.p>
-
-          <motion.div
-            className="flex flex-wrap gap-3"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.18, ease: 'easeOut' }}
-          >
-            <Button
-              as="a"
-              href={heroCtaLinks.whatsapp}
-              target="_blank"
-              rel="noreferrer"
-              className="bg-primary-600 text-white hover:bg-primary-700"
-            >
-              {t(locale, 'book_call')}
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-            <Button
-              as="a"
-              href="/services"
-              variant="ghost"
-              className="border border-border text-heading"
-            >
-              {t(locale, 'view_services')}
-            </Button>
-          </motion.div>
-        </div>
-
+      <Container className="relative z-10 min-h-screen px-6">
         <motion.div
-          className="relative flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
+          className="absolute inset-0 z-30 hidden items-center justify-center lg:flex"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
         >
-          <div className="relative h-[420px] w-[420px] max-w-full">
-            <div className="absolute inset-0 animate-spin-slow rounded-full border-2 border-dashed border-primary-200/60" />
-            <div className="absolute left-6 top-8 h-28 w-28 rounded-full bg-primary-100" />
-            <div className="absolute right-4 top-24 h-24 w-24 rounded-[18px] bg-secondary-500/35" />
-            <div className="absolute left-1/4 bottom-6 h-32 w-32 rounded-[18px] bg-primary-300/45" />
-            <div className="absolute right-1/4 bottom-12 h-28 w-40 rotate-6 rounded-[22px] bg-primary-50" />
-            <div className="absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-700/20" />
-            <img
-              src="/og-image.svg"
-              alt="iHelp Social collage"
-              className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-lg"
-              loading="lazy"
-            />
+          <div className="grid w-full max-w-[1200px] grid-cols-[minmax(320px,460px)_minmax(0,1fr)] items-center gap-12 px-6">
+            <HeroLeftContent locale={locale} isArabic={isArabic} className="justify-self-start" />
+            <div className="flex justify-center">
+              <HeroCenterLogo />
+            </div>
           </div>
         </motion.div>
+
+        <div className="relative z-20 flex min-h-screen flex-col items-center justify-start gap-8 pt-32 pb-10 lg:hidden">
+          <HeroCenterLogo mobile />
+          <HeroLeftContent locale={locale} isArabic={isArabic} mobile />
+        </div>
       </Container>
-    </section>
+    </motion.section>
   )
 }
